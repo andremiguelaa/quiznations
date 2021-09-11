@@ -1,8 +1,12 @@
 module.exports = {
   settings: {
     cors: {
-      enabled: true, 
-      origin: ["http://localhost", 'https://ligaquiz.pt'],
+      enabled: true,
+      origin: [
+        "http://localhost",
+        "http://localhost:3000",
+        "https://ligaquiz.pt",
+      ],
     },
   },
 };
