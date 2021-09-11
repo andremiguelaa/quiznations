@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teams",
+  "info": {
+    "name": "Teams"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "tier": {
+      "type": "integer",
+      "required": false,
+      "min": 1
+    },
+    "captain_name": {
+      "type": "string"
+    },
+    "captain_email": {
+      "type": "email"
+    }
+  }
+}

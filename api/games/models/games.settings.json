@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "name": "Games",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "round": {
+      "type": "integer",
+      "min": 1,
+      "required": true
+    },
+    "teams": {
+      "collection": "teams"
+    },
+    "host_name": {
+      "type": "string",
+      "required": false
+    },
+    "host_email": {
+      "type": "email",
+      "required": false
+    },
+    "datetime": {
+      "type": "datetime",
+      "required": false
+    }
+  }
+}
