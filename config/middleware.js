@@ -3,7 +3,7 @@ module.exports = {
     cors: {
       enabled: true,
       origin: [
-        "http://localhost",
+        "http://localhost:1337",
         "http://localhost:3000",
         "https://ligaquiz.pt",
         "https://quiznations.quizportugal.pt",
