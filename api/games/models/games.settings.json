@@ -26,7 +26,8 @@
     },
     "host_email": {
       "type": "email",
-      "required": false
+      "required": false,
+      "private": true
     },
     "datetime": {
       "type": "datetime",

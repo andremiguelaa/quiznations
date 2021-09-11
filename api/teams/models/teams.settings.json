@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "teams",
   "info": {
-    "name": "Teams"
+    "name": "Teams",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -24,7 +25,8 @@
       "type": "string"
     },
     "captain_email": {
-      "type": "email"
+      "type": "email",
+      "private": true
     }
   }
 }
