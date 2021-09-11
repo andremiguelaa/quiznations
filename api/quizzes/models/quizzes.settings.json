@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "quizzes",
   "info": {
-    "name": "Quizzes"
+    "name": "Quizzes",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -14,6 +15,10 @@
     "round": {
       "type": "integer",
       "min": 1
+    },
+    "topics": {
+      "type": "richtext",
+      "required": true
     },
     "questions": {
       "model": "file",

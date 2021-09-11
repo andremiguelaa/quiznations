@@ -31,6 +31,10 @@
     "datetime": {
       "type": "datetime",
       "required": false
+    },
+    "quiz_sent": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
