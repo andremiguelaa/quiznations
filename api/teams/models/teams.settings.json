@@ -27,6 +27,10 @@
     "captain_email": {
       "type": "email",
       "private": true
+    },
+    "token": {
+      "type": "string",
+      "private": true
     }
   }
 }
