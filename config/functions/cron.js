@@ -13,7 +13,7 @@ const marked = require("marked");
  */
 
 module.exports = {
-  "0 12 * * 3-6": async () => {
+  "0 12 * * 1-6": async () => {
     const games = await strapi.services.games.find({ datetime_null: true });
     games.forEach((game) => {
       game.teams.forEach(async (team) => {
