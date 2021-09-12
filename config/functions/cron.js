@@ -15,20 +15,22 @@ module.exports = {
     const games = await strapi.services.games.find({ datetime_null: true });
     games.forEach((game) => {
       game.teams.forEach(async (team) => {
-        await strapi.plugins.email.services.email.send({
-          to: team.captain_email,
-          subject: "[Quiz Nations] Jogo por agendar",
-          html: `
-            Olá!<br/>
-            <br/>
-            A tua equipa tem um jogo por agendar.<br/>
-            Pedimos que o faças através do seguinte endereço:<br/>
-            <a href="https://ligaquiz.pt/quiz-nations/${team.token}" target="_blank">https://ligaquiz.pt/quiz-nations/${team.token}</a><br/>
-            <br/>
-            Obrigado,<br/>
-            Quiz Portugal
-          `,
-        });
+        if (team.captain_email) {
+          await strapi.plugins.email.services.email.send({
+            to: team.captain_email,
+            subject: "[Quiz Nations] Jogo por agendar",
+            html: `
+              Olá!<br/>
+              <br/>
+              A tua equipa tem um jogo por agendar.<br/>
+              Pedimos que o faças através do seguinte endereço:<br/>
+              <a href="https://ligaquiz.pt/quiz-nations/${team.token}" target="_blank">https://ligaquiz.pt/quiz-nations/${team.token}</a><br/>
+              <br/>
+              Obrigado,<br/>
+              Quiz Portugal
+            `,
+          });
+        }
       });
     });
   },
