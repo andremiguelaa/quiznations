@@ -23,6 +23,8 @@
     "strapi-plugin-i18n": "3.6.8",
     "strapi-plugin-upload": "3.6.8",
     "strapi-plugin-users-permissions": "3.6.8",
+    "strapi-provider-email-mailtrap": "^3.5.0",
+    "strapi-provider-email-smtp": "^1.0.2",
     "strapi-utils": "3.6.8"
   },
   "author": {
