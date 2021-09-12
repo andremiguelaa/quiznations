@@ -2,19 +2,13 @@ module.exports = ({ env }) => {
   let email;
   if (env("ENVIRONMENT") === "production") {
     email = {
-      provider: "smtp",
+      provider: "mailgun",
       providerOptions: {
-        host: "smtp.mailgun.org",
-        port: 25,
-        secure: true,
-        username: env("MAILGUN_USER", ""),
-        password: env("MAILGUN_PASSWORD", ""),
-        rejectUnauthorized: true,
-        requireTLS: true,
-        connectionTimeout: 1,
+        apiKey: env("MAILGUN_API_KEY"),
+        domain: env("MAILGUN_DOMAIN"),
+        host: env("MAILGUN_HOST", "api.mailgun.net"),
       },
       settings: {
-        from: "no-reply@quizportugal.pt",
         defaultFrom: "no-reply@quizportugal.pt",
       },
     };
