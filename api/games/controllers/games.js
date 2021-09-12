@@ -24,7 +24,7 @@ module.exports = {
         to: [
           entity.teams[0].captain_email,
           entity.teams[1].captain_email,
-          ctx.request.body.host_email,
+          entity.host_email,
         ],
         subject: "[Quiz Nations] Jogo agendado",
         html: `
