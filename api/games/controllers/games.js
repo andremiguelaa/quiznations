@@ -42,6 +42,7 @@ module.exports = {
           Hora: ${new Date(entity.datetime).toLocaleTimeString("pt", {
             hour: "2-digit",
             minute: "2-digit",
+            hour12: false,
           })}<br/>
           Apresentador: ${entity.host_name}<br/>
           <br/>
