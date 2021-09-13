@@ -16,8 +16,9 @@ module.exports = {
   "0 12 * * 1-6": async () => {
     const games = await strapi.services.games.find({ datetime_null: true });
     games.forEach((game) => {
-      game.teams.forEach(async (team) => {
+      game.teams.forEach(async (team, index) => {
         if (team.captain_email) {
+          const opponent = index === 1 ? game.teams[0] : game.teams[1];
           await strapi.plugins.email.services.email.send({
             to: team.captain_email,
             subject: "[Quiz Nations] Jogo por agendar",
@@ -25,8 +26,20 @@ module.exports = {
               Olá!<br/>
               <br/>
               A tua equipa tem um jogo por agendar.<br/>
+              <br/>
+              Equipa adversária: ${opponent.name}<br/>
+              Capitão: ${opponent.captain_name} ${
+              opponent.captain_email
+                ? `(<a href="mailto:${opponent.captain_email}" target="_blank">${opponent.captain_email}</a>)`
+                : ""
+            }<br/>
+              <br/>
               Pedimos que o faças através do seguinte endereço:<br/>
-              <a href="https://ligaquiz.pt/quiz-nations/${team.token}" target="_blank">https://ligaquiz.pt/quiz-nations/${team.token}</a><br/>
+              <a href="https://ligaquiz.pt/quiz-nations/${
+                team.token
+              }" target="_blank">https://ligaquiz.pt/quiz-nations/${
+              team.token
+            }</a><br/>
               <br/>
               Obrigado,<br/>
               Quiz Portugal
