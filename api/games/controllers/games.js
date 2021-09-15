@@ -2,6 +2,8 @@
 
 const { sanitizeEntity } = require("strapi-utils");
 
+const masterToken = process.env.MASTER_TOKEN;
+
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
  * to customize this controller
@@ -18,6 +20,9 @@ module.exports = {
         validToken = true;
       }
     });
+    if (token === masterToken) {
+      validToken = true;
+    }
     if (validToken) {
       entity = await strapi.services.games.update({ id }, ctx.request.body);
       await strapi.plugins.email.services.email.send({
