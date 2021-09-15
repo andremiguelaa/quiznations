@@ -74,6 +74,11 @@ module.exports = {
                 <br/>
                 ${marked(quiz.topics)}
                 <br/>
+                Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
+                  game.room
+                }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+                game.room
+              }</a><br/>
                 <br/>
                 Boa sorte,<br/>
                 Quiz Portugal
@@ -93,11 +98,19 @@ module.exports = {
             <br/>
             ${marked(quiz.topics)}
             <br/>
-            <br/>
             Podes fazer o download do ficheiro com as perguntas <a href="https://quiznations.quizportugal.pt${
               quiz.questions.url
             }" target="_blank">aqui</a>.<br/>
             <br/>
+            Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
+              game.room
+            }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+              game.room
+            }</a><br/>
+            Link para marcar a pontuação: <a href="${
+              game.score
+            }" target="_blank">${game.score}</a><br/>
+          <br/>
             Boa sorte,<br/>
             Quiz Portugal
           `,

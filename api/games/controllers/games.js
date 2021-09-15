@@ -3,6 +3,7 @@
 const { sanitizeEntity } = require("strapi-utils");
 
 const masterToken = process.env.MASTER_TOKEN;
+const zoomRooms = process.env.ZOOM_ROOMS;
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -13,6 +14,14 @@ module.exports = {
   update: async (ctx) => {
     const { id } = ctx.params;
     let entity = await strapi.services.games.findOne({ id });
+    if (!entity) {
+      return ctx.throw(404);
+    }
+    const roundGames = await strapi.services.games.find({
+      round: entity.round,
+    });
+    const room =
+      zoomRooms.split(",")[roundGames.findIndex((item) => item.id == id)];
     const token = ctx.request.body.token;
     let validToken = false;
     entity.teams.forEach((team) => {
@@ -24,7 +33,10 @@ module.exports = {
       validToken = true;
     }
     if (validToken) {
-      entity = await strapi.services.games.update({ id }, ctx.request.body);
+      entity = await strapi.services.games.update(
+        { id },
+        { ...ctx.request.body, room }
+      );
       await strapi.plugins.email.services.email.send({
         to: [
           entity.teams[0].captain_email,
@@ -53,6 +65,12 @@ module.exports = {
           <br/>
           Os capitães receberão os tópicos via e-mail 10 minutos antes da hora do jogo.<br/>
           O apresentador receberá, pela mesma via e à mesma hora, as perguntas do jogo.<br/>
+          <br/>
+          Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
+            entity.room
+          }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+          entity.room
+        }</a><br/>
           <br/>
           Obrigado,<br/>
           Quiz Portugal
