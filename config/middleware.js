@@ -7,6 +7,7 @@ module.exports = {
         "http://localhost:3000",
         "https://ligaquiz.pt",
         "https://quiznations.quizportugal.pt",
+        "https://pororoca.quizportugal.pt",
       ],
       headers: [
         "Content-Type",
