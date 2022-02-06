@@ -110,7 +110,17 @@ module.exports = {
             Link para marcar a pontuação: <a href="${
               game.score
             }" target="_blank">${game.score}</a><br/>
-          <br/>
+            <br/>
+            Alernativamente podes usar o seguinte link para marcar as pontuações e ver as perguntas: <a href="https://pororoca.quizportugal.pt/?game=${
+              game.score
+            }&questions=https://quiznations.quizportugal.pt${
+              quiz.questions.url
+            }">https://pororoca.quizportugal.pt/?game=${
+              game.score
+            }&questions=https://quiznations.quizportugal.pt${
+              quiz.questions.url
+            }</a><br/>
+            <br/>
             Boa sorte,<br/>
             Quiz Portugal
           `,
