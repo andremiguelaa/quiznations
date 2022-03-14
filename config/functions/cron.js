@@ -13,7 +13,7 @@ const marked = require("marked");
  */
 
 module.exports = {
-  "0 12 * * 1-6": async () => {
+  "0 12 * * *": async () => {
     const games = await strapi.services.games.find({ datetime_null: true });
     games.forEach((game) => {
       game.teams.forEach(async (team, index) => {
@@ -98,20 +98,7 @@ module.exports = {
             <br/>
             ${marked(quiz.topics)}
             <br/>
-            Podes fazer o download do ficheiro com as perguntas <a href="https://quiznations.quizportugal.pt${
-              quiz.questions.url
-            }" target="_blank">aqui</a>.<br/>
-            <br/>
-            Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
-              game.room
-            }" target="_blank">https://videoconf-colibri.zoom.us/j/${
-              game.room
-            }</a><br/>
-            Link para marcar a pontuação: <a href="${
-              game.score
-            }" target="_blank">${game.score}</a><br/>
-            <br/>
-            Alernativamente podes usar o seguinte link para marcar as pontuações e ver as perguntas: <a href="https://pororoca.quizportugal.pt/?game=${
+            Para marcar as pontuações e aceder às perguntas deves usar este link: <a href="https://pororoca.quizportugal.pt/?game=${
               game.score
             }&questions=https://quiznations.quizportugal.pt${
               quiz.questions.url
@@ -120,6 +107,18 @@ module.exports = {
             }&questions=https://quiznations.quizportugal.pt${
               quiz.questions.url
             }</a><br/>
+            <br/>
+            Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
+              game.room
+            }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+              game.room
+            }</a><br/>
+            <br/>
+            Alternativamente podes fazer o download do ficheiro com as perguntas <a href="https://quiznations.quizportugal.pt${
+              quiz.questions.url
+            }" target="_blank">aqui</a> e marcar a pontuação: <a href="${
+              game.score
+            }" target="_blank">aqui</a>.<br/>
             <br/>
             Boa sorte,<br/>
             Quiz Portugal
