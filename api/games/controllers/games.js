@@ -17,13 +17,15 @@ module.exports = {
     if (!entity) {
       return ctx.throw(404);
     }
-    const roundGames = await strapi.services.games
-      .find({
-        round: entity.round,
-      })
-      .sort((a, b) => a.id - b.id);
+    const roundGames = await strapi.services.games.find({
+      round: entity.round,
+    });
     const room =
-      zoomRooms.split(",")[roundGames.findIndex((item) => item.id == id)];
+      zoomRooms.split(",")[
+        roundGames
+          .sort((a, b) => a.id - b.id)
+          .findIndex((item) => item.id == id)
+      ];
     const token = ctx.request.body.token;
     let validToken = false;
     entity.teams.forEach((team) => {
