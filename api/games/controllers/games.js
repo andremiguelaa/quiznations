@@ -17,15 +17,23 @@ module.exports = {
     if (!entity) {
       return ctx.throw(404);
     }
-    const roundGames = await strapi.services.games.find({
-      round: entity.round,
+    const begin = safeAdjustHours(ctx.request.body.datetime, -5);
+    const end = safeAdjustHours(ctx.request.body.datetime, 5);
+    const games = await strapi.services.games.find({
+      _where: {
+        datetime_gte: begin,
+        datetime_lte: end,
+      },
     });
-    const room =
-      zoomRooms.split(",")[
-        roundGames
-          .sort((a, b) => a.id - b.id)
-          .findIndex((item) => item.id == id)
-      ];
+    const conflictGames = games.filter((item) => item.id !== entity.id);
+    const usedZoomRooms = conflictGames.map((item) => item.room);
+    const freeRooms = zoomRooms
+      .split(",")
+      .filter((item) => !usedZoomRooms.includes(item));
+    let room;
+    if (freeRooms.length > 0) {
+      room = freeRooms[0];
+    }
     const token = ctx.request.body.token;
     let validToken = false;
     entity.teams.forEach((team) => {
@@ -70,9 +78,12 @@ module.exports = {
           Os capitães receberão os tópicos via e-mail 10 minutos antes da hora do jogo.<br/>
           O apresentador receberá, pela mesma via e à mesma hora, as perguntas do jogo.<br/>
           <br/>
-          Sala para o jogo: <a href="${entity.room}" target="_blank">${
-          entity.room
-        }</a><br/>
+          Sala para o jogo: ${
+            room
+              ? `<a href="${entity.room}" target="_blank">${entity.room}</a>`
+              : "Indisponível"
+          }
+          <br/>
           <br/>
           Obrigado,<br/>
           Quiz Portugal

@@ -74,9 +74,11 @@ module.exports = {
                 <br/>
                 ${marked(quiz.topics)}
                 <br/>
-                Sala para o jogo: <a href="${game.room}" target="_blank">${
-                game.room
-              }</a><br/>
+                Sala para o jogo: ${
+                  game.room
+                    ? `<a href="${game.room}" target="_blank">${game.room}</a>`
+                    : "Indisponível"
+                }<br/>
                 <br/>
                 Boa sorte,<br/>
                 Quiz Portugal
@@ -106,9 +108,11 @@ module.exports = {
               quiz.questions.url
             }</a><br/>
             <br/>
-            Sala para o jogo: <a href="${game.room}" target="_blank">${
+            Sala para o jogo: ${
               game.room
-            }</a><br/>
+                ? `<a href="${game.room}" target="_blank">${game.room}</a>`
+                : "Indisponível"
+            }<br/>
             <br/>
             Alternativamente podes fazer o download do ficheiro com as perguntas <a href="https://quiznations.quizportugal.pt${
               quiz.questions.url
