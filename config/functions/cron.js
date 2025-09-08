@@ -74,9 +74,7 @@ module.exports = {
                 <br/>
                 ${marked(quiz.topics)}
                 <br/>
-                Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
-                  game.room
-                }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+                Sala para o jogo: <a href="${game.room}" target="_blank">${
                 game.room
               }</a><br/>
                 <br/>
@@ -108,9 +106,7 @@ module.exports = {
               quiz.questions.url
             }</a><br/>
             <br/>
-            Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
-              game.room
-            }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+            Sala para o jogo: <a href="${game.room}" target="_blank">${
               game.room
             }</a><br/>
             <br/>

@@ -70,9 +70,7 @@ module.exports = {
           Os capitães receberão os tópicos via e-mail 10 minutos antes da hora do jogo.<br/>
           O apresentador receberá, pela mesma via e à mesma hora, as perguntas do jogo.<br/>
           <br/>
-          Sala para o jogo: <a href="https://videoconf-colibri.zoom.us/j/${
-            entity.room
-          }" target="_blank">https://videoconf-colibri.zoom.us/j/${
+          Sala para o jogo: <a href="${entity.room}" target="_blank">${
           entity.room
         }</a><br/>
           <br/>
