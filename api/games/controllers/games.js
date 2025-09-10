@@ -5,6 +5,13 @@ const { sanitizeEntity } = require("strapi-utils");
 const masterToken = process.env.MASTER_TOKEN;
 const zoomRooms = process.env.ZOOM_ROOMS;
 
+function safeAdjustHours(isoString, hours) {
+  // Convert to timestamp to avoid daylight saving time issues
+  const timestamp = new Date(isoString).getTime();
+  const adjustedTimestamp = timestamp + hours * 60 * 60 * 1000;
+  return new Date(adjustedTimestamp).toISOString();
+}
+
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
  * to customize this controller
